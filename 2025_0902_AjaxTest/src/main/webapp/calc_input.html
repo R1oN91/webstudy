@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/httpRequest.js"></script>
+
+<script type="text/javascript">
+const regular_number = /^[0-9]{1,}$/;
+function fn_result() {
+	
+	
+	
+	let su1 = document.getElementById("su1").value; 
+	let su2 = document.getElementById("su2").value;
+	
+	if(regular_number.test(su1)==false){
+		alert("숫자만 입력하세요!!");
+		document.getElementById("su1").focus();
+		return;
+	}
+	
+	if(regular_number.test(su2)==false){
+		alert("숫자만 입력하세요!!");
+		document.getElementById("su2").focus();
+		return;
+	}
+	
+	//Ajax를 이용해서 서버로 전송
+	let url = "calc.do"
+	let param  = "su1="+su1+"&su2=" + su2;
+	
+	sendRequest(url,param,callback_result,"GET");
+	
+	
+}//end:fn_result()
+
+function callback_result() {
+	
+	console.log("readyState :"+ xhr.readyState + "status :" + xhr.status)
+	
+	//서버로부터 데이터가 클라이언트측 xhr이 관리하는 저장소에 도착했다. 
+	if(xhr.readyState==4 && xhr.status==200){
+		
+		let data = xhr.responseText;
+		
+		document.getElementById("disp").innerHTML =data;
+	}
+}//end:callback_result()
+
+function fn_result_jquery() {
+	
+	
+	
+	let su1 = $("#su1").val();//document.getElementById("su1").value; 
+	let su2 = $("#su2").val();//document.getElementById("su2").value;
+	
+	if(regular_number.test(su1)==false){
+		alert("숫자만 입력하세요!!");
+		//document.getElementById("su1").focus();
+		$("#su1").focus();
+		return;
+	}
+	
+	if(regular_number.test(su2)==false){
+		alert("숫자만 입력하세요!!");
+		//document.getElementById("su2").focus();
+		$("#su2").focus();
+		return;
+	}
+	//JSON =>{"name":"value","name2":"value"}
+	//jQuery Ajax사용
+	$.ajax({
+		//type	:	"GET",
+		//async	:	true,
+		url		:	"calc.do",					//호출할 서버정보
+		data 	:	{"su1":su1 , "su2" :su2},	//전달인자(parameter)
+		
+		success	:	function(res_data){			//calc.do?su1=10&su2=5
+			
+			$("#disp").html(res_data);		
+		},
+		error	:	function(err){
+			
+			alert(err.responseText);	
+				
+		}
+	});
+	
+	}
+
+	
+
+</script>
+
+</head>
+<body>
+
+	수1:<input id="su1"><br>
+	수2:<input id="su2"><br>
+	 	<input type="button" value="계산해줘(XHR이용)" onclick="fn_result();">
+	 	<input type="button" value="계산해줘(jQuery Ajax이용)" onclick="fn_result_jquery();">
+	<hr>
+	<div id="disp"></div>
+
+
+
+</body>
+</html>

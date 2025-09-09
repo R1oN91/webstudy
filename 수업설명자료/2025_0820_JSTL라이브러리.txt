@@ -1,0 +1,19 @@
+JSP(Java Server Page)
+1. EL(Expression Language)
+   표현언어
+   ${  값(변수/상수/수식)   }
+
+2. JSTL(JSP Standard Tag Library)
+   1) 기존설치된 Tomcat내에 존재 -> lib
+      C:\apache-tomcat-10.1.44\webapps\examples\WEB-INF\lib <=2개화일 복사
+      C:\apache-tomcat-10.1.44\lib <=붙여넣기
+
+
+   <c:forEach var="n"  items="${  배열/컬렉션  }">
+   </c:forEach>
+
+   <c:if  test="${  조건  }">
+       명령
+   </c:if>
+
+  

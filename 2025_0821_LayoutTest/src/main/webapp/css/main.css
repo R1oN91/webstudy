@@ -1,0 +1,70 @@
+@charset "UTF-8";
+*{
+    margin:0
+}
+/* margin: auto; -> margin-left margin right가 동일하게 잡힘 */
+#main-box{
+    width: 800px;
+    height: 600px;
+    background-color: gray;
+    margin: 0 auto;
+}
+/* width, height %값 -> 부모기준 */
+#header{
+    float:inline-start;
+    width: 800px;
+    height: 100px;
+    background-color: pinks;
+}
+#aside-left{
+    float: left;
+    width: 30%;
+    min-height: 400px;
+    height: auto;
+    background-color: darkgray;
+}
+#content{    
+    float: right;
+    width: 70%;
+    min-height: 400px;
+    height: auto;
+    background-color: gainsboro;
+}
+
+#footer{
+    clear: both;
+    /* float 해지 */
+    width: 100%;
+    height: 100px;
+    background-color: green;
+}
+
+#title{
+	text-align: center;
+	color: #00ffff;
+	text-shadow: 2px 2px 2px black;
+	margin-top: 10px 
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
