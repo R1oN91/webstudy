@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sawon"> <!-- 사원 테이블 이름을 써줌. -->
+
+	<!-- 전체목록 조회 resultType="포장할 타입" -->
+	<select id="sawon_list" resultType="vo.SawonVo">
+		select*from sawon
+	</select>
+
+
+	<!-- 단일 parameter가 넘어오면 파라메터명을 아무거나 사용해도 된다. -->
+	<select id="sawon_list_deptno" parameterType="int"
+		resultType="vo.SawonVo">
+		select*from sawon where deptno= #{deptno}
+	</select>
+
+	<!-- 여러개의 parameter를 Map으로 전달 -->
+	<!-- Dynamic Query(동적쿼리) -->
+	<select id="sawon_list_condition" parameterType="java.util.Map"
+		resultType="vo.SawonVo">
+		select * from sawon
+		<trim prefix="where" prefixOverrides="and">
+			
+			<if test="deptno!=null">
+				deptno = #{deptno}
+			</if>
+			<if test="sajob!=null">
+				and sajob = #{sajob}
+			</if>
+			<if test="sasex!=null">
+				and sasex = #{sasex}
+			</if>
+			
+			 <if test="year10 != null">
+            and concat(substr(to_char(sahire,'YYYY'),1,3),0) = #{year10}
+        </if>
+
+		</trim>
+
+	</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
