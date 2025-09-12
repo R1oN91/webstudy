@@ -41,11 +41,11 @@ DAO용 SQL문
 insert into visit values( seq_visit_idx.nextVal ,'?','?','?','?',sysdate  )
 
 //삭제
-delete from visit where idx = 1					
+delete from visit where idx = 3				
 																		
 select*from visit order by idx desc
 
-select * from visit where idx=12
+select * from visit where idx=22
 
 --수정
 update visit set name = '응길동',content='응',pwd='dmd'
