@@ -20,8 +20,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- Dynamic Query(동적쿼리) -->
 	<select id="sawon_list_condition" parameterType="java.util.Map"
 		resultType="vo.SawonVo">
-		select * from sawon
-		<trim prefix="where" prefixOverrides="and">
+		select * from sawon    
+		<trim prefix="where" prefixOverrides="and"> <!-- and 또는 or을 사용 할 수 있다.   -->
 			
 			<if test="deptno!=null">
 				deptno = #{deptno}
